@@ -23,6 +23,10 @@ has_sigterm_flag <- function() {
   .Call("R_has_sigterm_flag", PACKAGE = "sigterm")
 }
 
+install_my_handler <- function (expr, rho = globalenv()){
+  .Call("R_install_my_handler", expr, rho, PACKAGE = "sigterm")
+}
+
 .onLoad <- function(libname, pkgname) {
   if (.Call("R_install_handler", PACKAGE = "sigterm")) {
     packageStartupMessage("Installed the SIGTERM handler.")
